@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>jQuery Calculator</title>
+    <title>Crystals Collector</title>
 
     <!-- Added link to the jQuery Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- Added a link to Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"re
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"
 </head>
+
 <body>
 
 <!-- Jumbotron for Title -->
@@ -24,7 +24,7 @@
     <div class="row">
 
 
-        <!-- Calculator Panel -->
+        <!-- Crystal Panel -->
         <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -32,10 +32,13 @@
                 </div>
 
                 <div class="panel-body">
-                    <button id="button-1" class="btn btn-primary number"><span class="glyphicon glyphicon-usd"></span></button>
-                    <button id="button-2" class="btn btn-primary number"><span class="glyphicon glyphicon-fire"></span></button>
-                    <button id="button-3" class="btn btn-primary number"><span class="glyphicon glyphicon-heart"></span></button>
-                    <button id="button-4" class="btn btn-primary number"><span class="glyphicon glyphicon-star"></span></button>
+                    <button id="button-1" class="btn btn-primary number" value="4"><span class="glyphicon glyphicon-usd"></span></button>
+
+                    <button id="button-2" class="btn btn-primary number" value="3"><span class="glyphicon glyphicon-fire"></span></button>
+
+                    <button id="button-3" class="btn btn-primary number" value="2"><span class="glyphicon glyphicon-heart"></span></button>
+
+                    <button id="button-4" class="btn btn-primary number" value="1"><span class="glyphicon glyphicon-star"></span></button>
                 </div>
 
             </div>
@@ -59,11 +62,11 @@
     </div>
 </div>
 
-        <!-- Scoreboard Panel -->
+        <!-- Randomly Generated Number -->
         <div class="col-lg-6">
         <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Wins and Losses</h3>
+                    <h3 class="panel-title">Random Number</h3>
                 </div>
                 <div class="panel-body">
                     <h1 id="first-number"></h1>
@@ -76,6 +79,25 @@
         </div>
     </div>
 </div>
+
+        <!-- Scoreboard Panel -->
+        <div class="col-lg-6">
+        <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Wins & Losses</h3>
+                </div>
+                <div class="panel-body">
+                    <h1 id="first-number"></h1>
+                    <h1 id="operator"></h1>
+                    <h1 id="second-number"></h1>
+                    <hr>
+                    <h1 id="winloss"></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
         <!-- Total Score Panel -->
         <div class="col-lg-6">
@@ -98,6 +120,7 @@
 
 
 <script type="text/javascript">
+
 var num1 = "";
 var num2 = "";
 var op;
@@ -105,7 +128,26 @@ var isOp = false;
 var newNum;
 $(document).ready(function(){
 
-// Your code here...
+function myFunction() {
+    var x = Math.floor((Math.random() * 10) + 1);
+    document.getElementById("button-1").innerHTML = num1;
+}
+
+function myFunction() {
+    var x = Math.floor((Math.random() * 10) + 1);
+    document.getElementById("button-2").innerHTML = num2;
+}
+
+function myFunction() {
+    var x = Math.floor((Math.random() * 10) + 1);
+    document.getElementById("button-3").innerHTML = num3;
+}
+
+function myFunction() {
+    var x = Math.floor((Math.random() * 10) + 1);
+    document.getElementById("button-4").innerHTML = num4;
+}
+
 $(".number").click (function(){
     if(!isOp)
     {    
@@ -123,69 +165,19 @@ $(".number").click (function(){
 
 });
 
-$(".operator").click (function(){
-    if(!isOp)
-    {
-        op = $(this).attr("value");
-        console.log(op);
-        $("#operator").append($(this).attr("value"));
-        isOp = true;
-    }
-
-
-});
-
-$(".equal").click (function(){
-    //adding
-   if(op === "+")
-   {
-    newNum = parseInt(num1) + parseInt(num2);
-    $("#result").append(newNum);
-   }
-
-   //minus
-   else if(op === "-")
-   {
-    newNum = parseInt(num1) - parseInt(num2);
-    $("#result").append(newNum);
-   }
-
-   //multiplication
-   else if(op === "x")
-   {
-    newNum = parseInt(num1) * parseInt(num2);
-    $("#result").append(newNum);
-   }
-
-   //division
-   else if(op === "÷")
-   {
-    newNum = parseInt(num1) / parseInt(num2);
-    $("#result").append(newNum);
-   }
-
-   else if(op === "^")
-   {
-    newNum = Math.pow(parseInt(num1), parseInt(num2));
-    $("#result").append(newNum);
-   }
-
-});
-
-$(".clear").click (function(){
-  isOp = false;
-  op = "";
-  num1= "";
-  num2 ="";
-  $("#first-number").empty();
-  $("#second-number").empty();
-  $("#operator").empty();
-  $("#result").empty();
-});
-
 });
 
 </script>
 
 </body>
 </html>
+
+/// How do I get the buttons to display a random number
+
+/// How do I get the buttons to add together without a separate button
+
+/// How do I get a random number to display in it's appropriate div
+
+/// How do I log wins and losses
+
+/// How do I get the game to understand the random number is the number we are trying to land on
