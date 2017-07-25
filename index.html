@@ -2,21 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Crystals Collector</title>
+    <title>Glyph Collector</title>
 
     <!-- Added link to the jQuery Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- Added a link to Bootstrap-->
+    <!-- Added a link to Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"
+
 </head>
 
 <body>
 
 <!-- Jumbotron for Title -->
 <div class="jumbotron">
-    <h1 class="text-center">Crystals Collector</h1>
-    <h3 class="text-center">You will be given a random number at the start of the game. There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score. You win the game by matching your total score to random number, you lose the game if your total score goes above the random number. The value of each crystal is hidden from you until you click on it. Each time when the game starts, the game will change the values of each crystal</h3>
+    <h1 class="text-center">Glyph Collector</h1>
+    <h3 class="text-center">You will be given a random number at the start of the game. There are four glyphs below. By clicking on a glyph you will add a specific amount of points to your total score. You win the game by matching your total score to random number, you lose the game if your total score goes above the random number. The value of each glyph is hidden from you until you click on it. Each time when the game starts, the game will change the values of each glyph.</h3>
 </div>
 
 <div class="container">
@@ -25,27 +26,27 @@
 
 
         <!-- Crystal Panel -->
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Crystals</h3>
+                    <h3 class="panel-title">Glyphicons</h3>
                 </div>
 
                 <div class="panel-body">
-                    <button id="button-1" class="btn btn-primary number" value="4"><span class="glyphicon glyphicon-usd"></span></button>
+                    <button id="button-1" class="btn btn-primary number"><span class="glyphicon glyphicon-usd"></span></button>
 
-                    <button id="button-2" class="btn btn-primary number" value="3"><span class="glyphicon glyphicon-fire"></span></button>
+                    <button id="button-2" class="btn btn-primary number"><span class="glyphicon glyphicon-fire"></span></button>
 
-                    <button id="button-3" class="btn btn-primary number" value="2"><span class="glyphicon glyphicon-heart"></span></button>
+                    <button id="button-3" class="btn btn-primary number"><span class="glyphicon glyphicon-heart"></span></button>
 
-                    <button id="button-4" class="btn btn-primary number" value="1"><span class="glyphicon glyphicon-star"></span></button>
+                    <button id="button-4" class="btn btn-primary number"><span class="glyphicon glyphicon-star"></span></button>
                 </div>
 
             </div>
         </div>
 
         <!-- Result Panel -->
-        <div class="col-lg-6">
+        <div class="col-lg-4">
         <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Result</h3>
@@ -63,7 +64,7 @@
 </div>
 
         <!-- Randomly Generated Number -->
-        <div class="col-lg-6">
+        <div class="col-lg-4">
         <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Random Number</h3>
@@ -73,7 +74,7 @@
                     <h1 id="operator"></h1>
                     <h1 id="second-number"></h1>
                     <hr>
-                    <h1 id="winloss"></h1>
+                    <h1 id="random"></h1>
                 </div>
             </div>
         </div>
@@ -81,7 +82,7 @@
 </div>
 
         <!-- Scoreboard Panel -->
-        <div class="col-lg-6">
+        <div class="col-lg-3">
         <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Wins & Losses</h3>
@@ -100,7 +101,7 @@
 
 
         <!-- Total Score Panel -->
-        <div class="col-lg-6">
+        <div class="col-lg-4">
         <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Total Score</h3>
@@ -121,49 +122,44 @@
 
 <script type="text/javascript">
 
-var num1 = "";
-var num2 = "";
-var op;
-var isOp = false;
-var newNum;
+
 $(document).ready(function(){
 
-function myFunction() {
-    var x = Math.floor((Math.random() * 10) + 1);
-    document.getElementById("button-1").innerHTML = num1;
+var sofar = 0;
+var endresult = Math.floor((Math.random() * 200) + 1);
+
+
+function createRandomNumber(){
+return Math.floor((Math.random() * 12) + 1);
 }
 
-function myFunction() {
-    var x = Math.floor((Math.random() * 10) + 1);
-    document.getElementById("button-2").innerHTML = num2;
-}
+$("#random").html(endresult)
 
-function myFunction() {
-    var x = Math.floor((Math.random() * 10) + 1);
-    document.getElementById("button-3").innerHTML = num3;
-}
-
-function myFunction() {
-    var x = Math.floor((Math.random() * 10) + 1);
-    document.getElementById("button-4").innerHTML = num4;
-}
 
 $(".number").click (function(){
-    if(!isOp)
-    {    
-        $("#first-number").append($(this).attr("value"));
-        num1 = num1.concat($(this).attr("value"));
-        console.log(num1);
+        if (!$(this).val())
+    {
+        $(this).val(createRandomNumber());
+
     }
 
-    if(isOp)
-    {
-        $("#second-number").append($(this).attr("value"));
-        num2 = num2.concat($(this).attr("value"));
-        console.log(num2);
-    }
+            sofar +=  parseInt($(this).val())
+        console.log(sofar)
+
+        $("#result").html(sofar)
+
+            if (sofar>endresult) {
+                alert("You Lose")
+
+            }
+
+            if (sofar==endresult) {
+                alert("You Win")
+            }
+
 
 });
+
 
 });
 
@@ -172,12 +168,8 @@ $(".number").click (function(){
 </body>
 </html>
 
-/// How do I get the buttons to display a random number
+<!-- 
 
-/// How do I get the buttons to add together without a separate button
+  How do I log wins and losses
 
-/// How do I get a random number to display in it's appropriate div
-
-/// How do I log wins and losses
-
-/// How do I get the game to understand the random number is the number we are trying to land on
+  How do I display a total score
